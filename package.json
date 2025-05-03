@@ -2,7 +2,7 @@
   "name": "com.magic.webads",
   "displayName": "Magic WebAds",
   "version": "1.0.0",
-  "unity": "6000.0",
+  "unity": "2021.3",
   "description": "a lightweight unity package for displaying web-based ads using webview. designed to support any ad service that delivers html-based banners or interstitials.",
   "author": {
     "name": "ali reza",
