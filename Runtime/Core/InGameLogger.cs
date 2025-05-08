@@ -8,7 +8,7 @@ public class InGameLogger : MonoBehaviour
     private Queue<string> logs = new Queue<string>();
     public int maxLines = 20;
 
-    void OnEnable()
+    void Start()
     {
         Application.logMessageReceived += HandleLog;
     }
@@ -30,5 +30,10 @@ public class InGameLogger : MonoBehaviour
     public void Copy()
     {
         GUIUtility.systemCopyBuffer = logText.text;
+    }
+
+    public void Clear()
+    {
+        logText.text = "";
     }
 }

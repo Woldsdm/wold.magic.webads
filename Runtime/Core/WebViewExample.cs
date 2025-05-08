@@ -4,7 +4,18 @@ using UnityEngine.Networking;
 
 public class WebViewExample : MonoBehaviour
 {
-    private AndroidJavaObject webView;
+    AndroidJavaObject webView;
+
+    public void Test2()
+    {
+        Debug.Log("Test2()");
+        string sd = "Null";
+        using (AndroidJavaObject pl = new AndroidJavaObject("wold.magic.webads.adr.Test"))
+        {
+            sd = pl.Call<string>("sd");
+        }
+        Debug.Log($"MS: {sd}");
+    }
 
     public void Test()
     {
