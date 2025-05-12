@@ -5,16 +5,16 @@ namespace MagicWebAds.Core.Android
 {
     public class AndroidWebAdsDriver : IWebAdsDriver, IDisposable
     {
-        private AndroidJavaObject _javaAdManager;
+        private AndroidJavaObject androidJava;
         private AndroidWebAdsCallback _callback;
 
         public AndroidWebAdsDriver(WebAdsListener listener)
         {
             _callback = new AndroidWebAdsCallback(listener);
 
-            _javaAdManager = new AndroidJavaObject("wold.magic.webads.adr.WebAdsManager");
+            androidJava = new AndroidJavaObject("wold.magic.webads.adr.WebAdsManager");
 
-            _javaAdManager.Call("init", GetActivity(), _callback);
+            androidJava.Call("init", GetActivity(), _callback);
         }
 
         private AndroidJavaObject GetActivity()
@@ -27,24 +27,24 @@ namespace MagicWebAds.Core.Android
 
         public void Load(string url)
         {
-            _javaAdManager?.Call("load", url);
+            androidJava?.Call("load", url);
         }
 
         public void Show()
         {
-            _javaAdManager?.Call("show");
+            androidJava?.Call("show");
         }
 
         public void Close()
         {
-            _javaAdManager?.Call("close");
+            androidJava?.Call("close");
         }
 
         public void Dispose()
         {
-            _javaAdManager?.Call("dispose");
-            _javaAdManager?.Dispose();
-            _javaAdManager = null;
+            androidJava?.Call("dispose");
+            androidJava?.Dispose();
+            androidJava = null;
         }
     }
 }

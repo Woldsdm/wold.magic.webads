@@ -1,3 +1,5 @@
+using System;
+
 namespace MagicWebAds.Core
 {
     public interface IWebAdsDriver
