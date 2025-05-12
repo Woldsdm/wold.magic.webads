@@ -8,5 +8,8 @@
     "name": "ali reza",
     "email": "lordiroh3@gmail.com",
     "url": "https://github.com/LordKayaba/wold.magic.webads"
+  },
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
   }
 }

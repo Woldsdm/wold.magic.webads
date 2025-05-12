@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MagicWebAds.Core.Android
 {
-    public class AndroidWebAdsDriver : IWebAdsDriver, IDisposable
+    public class AndroidWebAdsDriver : IWebAdsDriver
     {
         private AndroidJavaObject androidJava;
         private AndroidWebAdsCallback _callback;
