@@ -1,4 +1,4 @@
-using System;
+using MagicWebAds.Core.Data;
 using UnityEngine;
 
 namespace MagicWebAds.Core.Android
@@ -38,6 +38,25 @@ namespace MagicWebAds.Core.Android
         public void Close()
         {
             androidJava?.Call("close");
+        }
+
+        public void SetSettings(WebAdSettings settings)
+        {
+            androidJava?.Call("setSettings",
+                settings.showOnLoadComplete,
+                settings.closeButtonDelay,
+                settings.isTransparent,
+                settings.enableJavaScript,
+                settings.enableZoom,
+                settings.enableScroll,
+                settings.allowMixedContent,
+                settings.backButtonClosesAd,
+                settings.useCustomUserAgent,
+                settings.customUserAgent,
+                settings.enableCookies,
+                settings.cacheEnabled,
+                settings.clearCacheOnStart
+            );
         }
 
         public void Dispose()

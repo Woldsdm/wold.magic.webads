@@ -1,3 +1,4 @@
+using MagicWebAds.Core.Data;
 using System;
 
 namespace MagicWebAds.Core
@@ -7,5 +8,6 @@ namespace MagicWebAds.Core
         void Load(string url);
         void Show();
         void Close();
+        void SetSettings(WebAdSettings settings);
     }
 }
