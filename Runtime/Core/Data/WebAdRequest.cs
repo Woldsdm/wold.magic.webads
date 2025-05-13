@@ -1,5 +1,3 @@
-using Newtonsoft.Json;
-
 namespace MagicWebAds.Core.Data
 {
     /// <summary>
@@ -16,8 +14,5 @@ namespace MagicWebAds.Core.Data
 
         /// <summary>Data to be sent via POST method (if enabled).</summary>
         public string postData;
-
-        /// <summary>Serialize this WebAdRequest to JSON.</summary>
-        public string Serialize() => JsonConvert.SerializeObject(this);
     }
 }
