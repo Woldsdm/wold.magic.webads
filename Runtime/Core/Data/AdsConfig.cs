@@ -10,7 +10,7 @@ namespace MagicWebAds.Core.Data
         POST
     }
 
-    [Serializable]
+    /*[Serializable]
     public class Service
     {
         /// <summary>Name of the ad or service provider (e.g., "MyAdService").</summary>
@@ -24,7 +24,7 @@ namespace MagicWebAds.Core.Data
         /// <summary>List of individual web ad requests under this service.</summary>
         [Tooltip("Multiple requests that belong to this service.")]
         public List<RequestConfig> requests;
-    }
+    }*/
 
 
     [Serializable]

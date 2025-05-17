@@ -1,5 +1,4 @@
 using MagicWebAds.Core;
-using MagicWebAds.Core.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
