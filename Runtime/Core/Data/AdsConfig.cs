@@ -34,10 +34,20 @@ namespace MagicWebAds.Core.Data
         [Tooltip("Display and behavior options for how the WebView will render this ad.")]
         public WebAdSettings settings;
 
-        string PostData = "";
+        string postData = null;
+
+        /// <summary>
+        /// Generates and returns a URL-encoded query string based on the list of parameters.
+        /// This string can be used in GET requests or cached for POST body usage.
+        /// </summary>
+        /// <returns>
+        /// A cached or freshly generated URL-encoded parameter string,
+        /// or an empty string if no parameters exist.
+        /// </returns>
         public string GetParametersData()
         {
-            if (PostData != "") return PostData;
+            if (!string.IsNullOrEmpty(postData))
+                return postData;
 
             if (parameters == null || parameters.Count == 0)
                 return string.Empty;
@@ -50,12 +60,29 @@ namespace MagicWebAds.Core.Data
                 sb.Append("=");
                 sb.Append(UnityWebRequest.EscapeURL(parameters[i].value));
             }
-            return sb.ToString();
+
+            postData = sb.ToString();
+            return postData;
         }
 
+        /// <summary>
+        /// Constructs and returns the full URL for the request based on the request method.
+        /// If the method is GET, appends the parameter string as a query string.
+        /// </summary>
+        /// <returns>
+        /// The full URL including parameters for GET requests,
+        /// or just the base URL for POST requests.
+        /// </returns>
         public string GetURL()
         {
-            if (method == RequestMethod.GET) return url + GetParametersData();
+            if (method == RequestMethod.GET)
+            {
+                string paramData = GetParametersData();
+                if (string.IsNullOrEmpty(paramData))
+                    return url;
+
+                return url.Contains("?") ? url + "&" + paramData : url + "?" + paramData;
+            }
             return url;
         }
     }
