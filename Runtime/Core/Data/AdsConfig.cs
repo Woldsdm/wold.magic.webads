@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace MagicWebAds.Core.Data
 {
@@ -9,23 +10,6 @@ namespace MagicWebAds.Core.Data
         GET,
         POST
     }
-
-    /*[Serializable]
-    public class Service
-    {
-        /// <summary>Name of the ad or service provider (e.g., "MyAdService").</summary>
-        [Tooltip("A logical name to identify this ad or service provider.")]
-        public string name;
-
-        /// <summary>Default settings that apply to all requests in this service (unless overridden).</summary>
-        [Tooltip("Default WebView settings for all requests in this service. Individual requests can override these.")]
-        public WebAdSettings defaultSettings;
-
-        /// <summary>List of individual web ad requests under this service.</summary>
-        [Tooltip("Multiple requests that belong to this service.")]
-        public List<RequestConfig> requests;
-    }*/
-
 
     [Serializable]
     public class RequestConfig
@@ -49,6 +33,31 @@ namespace MagicWebAds.Core.Data
         /// <summary>Settings for how this WebAd should behave when loaded.</summary>
         [Tooltip("Display and behavior options for how the WebView will render this ad.")]
         public WebAdSettings settings;
+
+        string PostData = "";
+        public string GetParametersData()
+        {
+            if (PostData != "") return PostData;
+
+            if (parameters == null || parameters.Count == 0)
+                return string.Empty;
+
+            var sb = new System.Text.StringBuilder();
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                if (i > 0) sb.Append("&");
+                sb.Append(UnityWebRequest.EscapeURL(parameters[i].name));
+                sb.Append("=");
+                sb.Append(UnityWebRequest.EscapeURL(parameters[i].value));
+            }
+            return sb.ToString();
+        }
+
+        public string GetURL()
+        {
+            if (method == RequestMethod.GET) return url + GetParametersData();
+            return url;
+        }
     }
 
     [Serializable]
