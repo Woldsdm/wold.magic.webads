@@ -15,5 +15,5 @@ public class Service : ScriptableObject
 
     /// <summary>List of individual web ad requests under this service.</summary>
     [Tooltip("Multiple requests that belong to this service.")]
-    public List<RequestConfig> requests;
+    public List<WebAdRequest> requests;
 }

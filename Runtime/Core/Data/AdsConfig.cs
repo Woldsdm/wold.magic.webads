@@ -12,7 +12,7 @@ namespace MagicWebAds.Core.Data
     }
 
     [Serializable]
-    public class RequestConfig
+    public class WebAdRequest
     {
         /// <summary>Unique name for this specific ad/web request.</summary>
         [Tooltip("Name to identify this individual request.")]
@@ -34,7 +34,7 @@ namespace MagicWebAds.Core.Data
         [Tooltip("Display and behavior options for how the WebView will render this ad.")]
         public WebAdSettings settings;
 
-        string postData = null;
+        string postData = string.Empty;
 
         /// <summary>
         /// Generates and returns a URL-encoded query string based on the list of parameters.

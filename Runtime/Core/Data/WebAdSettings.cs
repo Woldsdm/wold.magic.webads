@@ -16,10 +16,10 @@ namespace MagicWebAds.Core.Data
         public bool showOnLoadComplete = true;
 
         /// <summary>
-        /// Delay in seconds before the close button becomes available.
+        /// If true, clicking on links will open them in the system browser instead of inside the WebView.
         /// </summary>
-        [Tooltip("Delay (in seconds) before the close button becomes active.")]
-        public float closeButtonDelay = 0f;
+        [Tooltip("If enabled, link clicks will open in the device's default browser instead of the WebView.")]
+        public bool openLinksInSystemBrowser = false;
 
         /// <summary>
         /// Determines whether the WebView background should be transparent.

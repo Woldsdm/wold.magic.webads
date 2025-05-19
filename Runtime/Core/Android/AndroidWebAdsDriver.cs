@@ -25,9 +25,10 @@ namespace MagicWebAds.Core.Android
             }
         }
 
-        public void Load(string url)
+        public void Load(WebAdRequest request)
         {
-            androidJava?.Call("load", url);
+            androidJava?.Call("load", request.GetURL(),
+            request.method == RequestMethod.POST, request.GetParametersData());
         }
 
         public void Show()
@@ -44,7 +45,7 @@ namespace MagicWebAds.Core.Android
         {
             androidJava?.Call("setSettings",
                 settings.showOnLoadComplete,
-                settings.closeButtonDelay,
+                settings.openLinksInSystemBrowser,
                 settings.isTransparent,
                 settings.enableJavaScript,
                 settings.enableZoom,
