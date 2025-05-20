@@ -5,8 +5,8 @@ namespace MagicWebAds.Core.Android
 {
     public class AndroidWebAdsDriver : IWebAdsDriver
     {
-        private AndroidJavaObject androidJava;
-        private AndroidWebAdsCallback _callback;
+        AndroidJavaObject androidJava;
+        AndroidWebAdsCallback _callback;
 
         public AndroidWebAdsDriver(WebAdsListener listener)
         {
@@ -17,7 +17,7 @@ namespace MagicWebAds.Core.Android
             androidJava.Call("init", GetActivity(), _callback);
         }
 
-        private AndroidJavaObject GetActivity()
+        AndroidJavaObject GetActivity()
         {
             using (var unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
             {
