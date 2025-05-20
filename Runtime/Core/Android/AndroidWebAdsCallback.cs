@@ -1,11 +1,22 @@
-using MagicWebAds.Core;
 using UnityEngine;
 
-public class AndroidWebAdsCallback : AndroidJavaProxy
+namespace MagicWebAds.Core.Android
 {
-    WebAdsListener _listener;
-    public AndroidWebAdsCallback(WebAdsListener listener) : base("wold.magic.webads.adr.AndroidWebAdsCallback") => _listener = listener;
-    void onClosed() => _listener.OnClosed.Invoke();
-    void onLoaded() => _listener.OnLoaded.Invoke();
-    void onFailed(string error) => _listener.OnFailed.Invoke(error);
+    public class AndroidWebAdsCallback : AndroidJavaProxy
+    {
+        WebAdsListener _listener;
+
+        public AndroidWebAdsCallback(WebAdsListener listener)
+            : base("wold.magic.webads.adr.AndroidWebAdsCallback") => _listener = listener;
+
+        void onClosed() => _listener.OnClosed.Invoke();
+        void onLoaded() => _listener.OnLoaded.Invoke();
+        void onFailed(string error) => _listener.OnFailed.Invoke(error);
+        void onClicked(string url) => _listener.OnClicked.Invoke(url);
+        void onProgressChanged(int progress) => _listener.OnProgressChanged.Invoke(progress);
+        void onStartedLoading() => _listener.OnStartedLoading.Invoke();
+        void onPageStarted(string url) => _listener.OnPageStarted.Invoke(url);
+        void onError(string error) => _listener.OnError.Invoke(error);
+        void onHttpResponseCode(int code) => _listener.OnHttpResponseCode.Invoke(code);
+    }
 }
