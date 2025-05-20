@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace MagicWebAds.Core.Android
@@ -17,6 +18,13 @@ namespace MagicWebAds.Core.Android
         void onStartedLoading() => _listener.OnStartedLoading.Invoke();
         void onPageStarted(string url) => _listener.OnPageStarted.Invoke(url);
         void onError(string error) => _listener.OnError.Invoke(error);
-        void onHttpResponseCode(int code) => _listener.OnHttpResponseCode.Invoke(code);
+        void onHttpError(int statusCode, String url, String responseText) 
+        {
+            httpError.statusCode = statusCode;
+            httpError.url = url;
+            httpError.responseText = responseText;
+            _listener.OnHttpError.Invoke(httpError);
+        } 
+        HttpErrorInfo httpError = new();
     }
 }

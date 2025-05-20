@@ -13,7 +13,7 @@ public class WebAdsListener
     [SerializeField] UnityEvent onStartedLoading = new();
     [SerializeField] UnityEvent<string> onPageStarted = new();
     [SerializeField] UnityEvent<string> onError = new();
-    [SerializeField] UnityEvent<int> onHttpResponseCode = new();
+    [SerializeField] HttpErrorEvent onHttpError = new();
 
     public UnityEvent OnLoaded => onLoaded;
     public UnityEvent OnClosed => onClosed;
@@ -23,5 +23,16 @@ public class WebAdsListener
     public UnityEvent OnStartedLoading => onStartedLoading;
     public UnityEvent<string> OnPageStarted => onPageStarted;
     public UnityEvent<string> OnError => onError;
-    public UnityEvent<int> OnHttpResponseCode => onHttpResponseCode;
+    public HttpErrorEvent OnHttpError => onHttpError;
 }
+
+[Serializable]
+public class HttpErrorInfo
+{
+    public int statusCode;
+    public string url;
+    public string responseText;
+}
+
+[Serializable]
+public class HttpErrorEvent : UnityEvent<HttpErrorInfo> { }
