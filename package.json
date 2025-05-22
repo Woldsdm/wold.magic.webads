@@ -5,9 +5,9 @@
   "unity": "2021.3",
   "description": "a lightweight unity package for displaying web-based ads using webview. designed to support any ad service that delivers html-based banners or interstitials.",
   "author": {
-    "name": "ali reza",
-    "email": "lordiroh3@gmail.com",
-    "url": "https://github.com/LordKayaba/wold.magic.webads"
+    "name": "Wold",
+    "email": "woldsdg@gmail.com",
+    "url": "https://github.com/Woldsdm/wold.magic.webads"
   },
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "3.2.1"
