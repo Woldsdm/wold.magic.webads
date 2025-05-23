@@ -6,6 +6,7 @@ namespace MagicWebAds.Core.Android
     public class AndroidWebAdsDriver : IWebAdsDriver
     {
         AndroidJavaObject androidJava;
+        AndroidJavaObject layout;
         AndroidWebAdsCallback _callback;
 
         public AndroidWebAdsDriver(WebAdsListener listener)
@@ -15,6 +16,8 @@ namespace MagicWebAds.Core.Android
             androidJava = new AndroidJavaObject("wold.magic.webads.adr.WebAdsManager");
 
             androidJava.Call("init", GetActivity(), _callback);
+
+            layout = androidJava.Get<AndroidJavaObject>("layout");
         }
 
         AndroidJavaObject GetActivity()
@@ -58,6 +61,35 @@ namespace MagicWebAds.Core.Android
                 settings.cacheEnabled,
                 settings.clearCacheOnStart
             );
+        }
+
+        public void SetAdLayout(RectTransform rectTransform)
+        {
+            Vector3[] worldCorners = new Vector3[4];
+            rectTransform.GetWorldCorners(worldCorners);
+
+            Vector3 bottomLeft = worldCorners[0];
+            Vector3 topRight = worldCorners[2];
+
+            Vector2 bottomLeftScreenPoint = RectTransformUtility.WorldToScreenPoint(null, bottomLeft);
+            Vector2 topRightScreenPoint = RectTransformUtility.WorldToScreenPoint(null, topRight);
+
+            int x = Mathf.RoundToInt(bottomLeftScreenPoint.x);
+            int y = Mathf.RoundToInt(Screen.height - topRightScreenPoint.y);
+            int width = Mathf.RoundToInt(topRightScreenPoint.x - bottomLeftScreenPoint.x);
+            int height = Mathf.RoundToInt(topRightScreenPoint.y - bottomLeftScreenPoint.y);
+
+            layout.Call("setLayout", x, y, width, height);
+        }
+
+        public void SetAdLayoutFullScreen()
+        {
+            layout.Call("setFullScreen");
+        }
+
+        public void UpdateAdLayout()
+        {
+            androidJava?.Call("updateLayout");
         }
 
         public void Dispose()
