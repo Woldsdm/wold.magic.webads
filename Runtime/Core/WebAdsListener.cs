@@ -9,6 +9,7 @@ public class WebAdsListener
     [SerializeField] UnityEvent onClosed = new();
     [SerializeField] UnityEvent<string> onFailed = new();
     [SerializeField] UnityEvent<string> onClicked = new();
+    [SerializeField] UnityEvent<int> onButtonClicked = new();
     [SerializeField] UnityEvent<int> onProgressChanged = new();
     [SerializeField] UnityEvent onStartedLoading = new();
     [SerializeField] UnityEvent<string> onPageStarted = new();
@@ -19,6 +20,7 @@ public class WebAdsListener
     public UnityEvent OnClosed => onClosed;
     public UnityEvent<string> OnFailed => onFailed;
     public UnityEvent<string> OnClicked => onClicked;
+    public UnityEvent<int> OnButtonClicked => onButtonClicked;
     public UnityEvent<int> OnProgressChanged => onProgressChanged;
     public UnityEvent OnStartedLoading => onStartedLoading;
     public UnityEvent<string> OnPageStarted => onPageStarted;

@@ -5,8 +5,7 @@ namespace MagicWebAds.Core.Android
 {
     public class AndroidWebAdsDriver : IWebAdsDriver
     {
-        AndroidJavaObject androidJava;
-        AndroidJavaObject layout;
+        AndroidJavaObject androidJava, layout, buttonManager;
         AndroidWebAdsCallback _callback;
 
         public AndroidWebAdsDriver(WebAdsListener listener)
@@ -18,6 +17,7 @@ namespace MagicWebAds.Core.Android
             androidJava.Call("init", GetActivity(), _callback);
 
             layout = androidJava.Get<AndroidJavaObject>("layout");
+            buttonManager = androidJava.Get<AndroidJavaObject>("buttonManager");
         }
 
         AndroidJavaObject GetActivity()
@@ -65,20 +65,7 @@ namespace MagicWebAds.Core.Android
 
         public void SetAdLayout(RectTransform rectTransform)
         {
-            Vector3[] worldCorners = new Vector3[4];
-            rectTransform.GetWorldCorners(worldCorners);
-
-            Vector3 bottomLeft = worldCorners[0];
-            Vector3 topRight = worldCorners[2];
-
-            Vector2 bottomLeftScreenPoint = RectTransformUtility.WorldToScreenPoint(null, bottomLeft);
-            Vector2 topRightScreenPoint = RectTransformUtility.WorldToScreenPoint(null, topRight);
-
-            int x = Mathf.RoundToInt(bottomLeftScreenPoint.x);
-            int y = Mathf.RoundToInt(Screen.height - topRightScreenPoint.y);
-            int width = Mathf.RoundToInt(topRightScreenPoint.x - bottomLeftScreenPoint.x);
-            int height = Mathf.RoundToInt(topRightScreenPoint.y - bottomLeftScreenPoint.y);
-
+            AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
             layout.Call("setLayout", x, y, width, height);
         }
 
@@ -92,11 +79,42 @@ namespace MagicWebAds.Core.Android
             androidJava?.Call("updateLayout");
         }
 
+        public int AddButton(RectTransform rectTransform, Sprite sprite)
+        {
+            AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
+            return buttonManager?.Call<int>("addButton", AndroidHelper.SpriteToBase64(sprite), x, y, width, height) ?? -1;
+        }
+
+        public void UpdateButton(int index, RectTransform rectTransform, Sprite sprite)
+        {
+            AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
+            buttonManager?.Call("updateButton", index, AndroidHelper.SpriteToBase64(sprite), x, y, width, height);
+        }
+
+        public void SetButtonActive(int index, bool active)
+        {
+            buttonManager?.Call("setButtonActive", index, active);
+        }
+
+        public void RemoveButton(int index)
+        {
+            buttonManager?.Call("removeButton", index);
+        }
+
+        public void ResetAllButtons()
+        {
+            buttonManager?.Call("resetAllButtons");
+        }
+
         public void Dispose()
         {
             androidJava?.Call("dispose");
             androidJava?.Dispose();
+            layout?.Dispose();
+            buttonManager?.Dispose();
             androidJava = null;
+            layout = null;
+            buttonManager = null;
         }
     }
 }

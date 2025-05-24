@@ -10,8 +10,15 @@ namespace MagicWebAds.Core
         void Show();
         void Close();
         void SetSettings(WebAdSettings settings);
-        public void SetAdLayout(RectTransform rectTransform);
-        public void SetAdLayoutFullScreen();
-        public void UpdateAdLayout();
+
+        void SetAdLayout(RectTransform rectTransform);
+        void SetAdLayoutFullScreen();
+        void UpdateAdLayout();
+
+        int AddButton(RectTransform rectTransform, Sprite sprite);
+        void UpdateButton(int index, RectTransform rectTransform, Sprite sprite);
+        void SetButtonActive(int index, bool active);
+        void RemoveButton(int index);
+        void ResetAllButtons();
     }
 }

@@ -14,6 +14,7 @@ namespace MagicWebAds.Core.Android
         void onLoaded() => _listener.OnLoaded.Invoke();
         void onFailed(string error) => _listener.OnFailed.Invoke(error);
         void onClicked(string url) => _listener.OnClicked.Invoke(url);
+        void onButtonClicked(int index) => _listener.OnButtonClicked.Invoke(index);
         void onProgressChanged(int progress) => _listener.OnProgressChanged.Invoke(progress);
         void onStartedLoading() => _listener.OnStartedLoading.Invoke();
         void onPageStarted(string url) => _listener.OnPageStarted.Invoke(url);
