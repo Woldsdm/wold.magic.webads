@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace MagicWebAds.Core.Android
 {
-    internal static class AndroidHelper
+    public static class AndroidHelper
     {
         public static void ConvertRectTransform(RectTransform rectTransform, out int x, out int y, out int width, out int height)
         {
@@ -20,28 +21,25 @@ namespace MagicWebAds.Core.Android
             width = Mathf.RoundToInt(topRightScreenPoint.x - bottomLeftScreenPoint.x);
             height = Mathf.RoundToInt(topRightScreenPoint.y - bottomLeftScreenPoint.y);
         }
-
         public static string SpriteToBase64(Sprite sprite)
         {
-            if (sprite == null || sprite.texture == null)
-                return "";
+            Rect rect = sprite.rect;
+            int width = (int)rect.width;
+            int height = (int)rect.height;
 
-            var texture = sprite.texture;
-            var rect = sprite.rect;
+            Texture2D newTex = new Texture2D(width, height, TextureFormat.RGBA32, false);
 
-            Texture2D cropped = new Texture2D((int)rect.width, (int)rect.height, texture.format, false);
-            cropped.SetPixels(texture.GetPixels(
-                (int)rect.x,
-                (int)rect.y,
-                (int)rect.width,
-                (int)rect.height
-            ));
-            cropped.Apply();
+            Color[] pixels = sprite.texture.GetPixels(
+                (int)rect.x, (int)rect.y, width, height
+            );
 
-            byte[] imageData = cropped.EncodeToPNG();
-            Object.Destroy(cropped);
+            newTex.SetPixels(pixels);
+            newTex.Apply();
 
-            return System.Convert.ToBase64String(imageData);
+            byte[] pngData = newTex.EncodeToPNG();
+            UnityEngine.Object.Destroy(newTex);
+
+            return Convert.ToBase64String(pngData);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace MagicWebAds.Core.Android
 {
     public class AndroidWebAdsDriver : IWebAdsDriver
     {
-        AndroidJavaObject androidJava, layout, buttonManager;
+        AndroidJavaObject androidJava, layout;
         AndroidWebAdsCallback _callback;
 
         public AndroidWebAdsDriver(WebAdsListener listener)
@@ -17,7 +17,6 @@ namespace MagicWebAds.Core.Android
             androidJava.Call("init", GetActivity(), _callback);
 
             layout = androidJava.Get<AndroidJavaObject>("layout");
-            buttonManager = androidJava.Get<AndroidJavaObject>("buttonManager");
         }
 
         AndroidJavaObject GetActivity()
@@ -82,28 +81,28 @@ namespace MagicWebAds.Core.Android
         public int AddButton(RectTransform rectTransform, Sprite sprite)
         {
             AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
-            return buttonManager?.Call<int>("addButton", AndroidHelper.SpriteToBase64(sprite), x, y, width, height) ?? -1;
+            return androidJava?.Call<int>("addButton", AndroidHelper.SpriteToBase64(sprite), x, y, width, height) ?? -1;
         }
 
         public void UpdateButton(int index, RectTransform rectTransform, Sprite sprite)
         {
             AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
-            buttonManager?.Call("updateButton", index, AndroidHelper.SpriteToBase64(sprite), x, y, width, height);
+            androidJava?.Call("updateButton", index, AndroidHelper.SpriteToBase64(sprite), x, y, width, height);
         }
 
         public void SetButtonActive(int index, bool active)
         {
-            buttonManager?.Call("setButtonActive", index, active);
+            androidJava?.Call("setButtonActive", index, active);
         }
 
         public void RemoveButton(int index)
         {
-            buttonManager?.Call("removeButton", index);
+            androidJava?.Call("removeButton", index);
         }
 
         public void ResetAllButtons()
         {
-            buttonManager?.Call("resetAllButtons");
+            androidJava?.Call("resetAllButtons");
         }
 
         public void Dispose()
@@ -111,10 +110,8 @@ namespace MagicWebAds.Core.Android
             androidJava?.Call("dispose");
             androidJava?.Dispose();
             layout?.Dispose();
-            buttonManager?.Dispose();
             androidJava = null;
             layout = null;
-            buttonManager = null;
         }
     }
 }
