@@ -1,0 +1,16 @@
+{
+    "name": "wold.magic.webads.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3f86df8fbffde4240a0fe28945537023"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

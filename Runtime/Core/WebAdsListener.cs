@@ -26,6 +26,20 @@ public class WebAdsListener
     public UnityEvent<string> OnPageStarted => onPageStarted;
     public UnityEvent<string> OnError => onError;
     public HttpErrorEvent OnHttpError => onHttpError;
+
+    public void Dispose()
+    {
+        onLoaded.RemoveAllListeners();
+        onClosed.RemoveAllListeners();
+        onFailed.RemoveAllListeners();
+        onClicked.RemoveAllListeners();
+        onButtonClicked.RemoveAllListeners();
+        onProgressChanged.RemoveAllListeners();
+        onStartedLoading.RemoveAllListeners();
+        onPageStarted.RemoveAllListeners();
+        onError.RemoveAllListeners();
+        onHttpError.RemoveAllListeners();
+    }
 }
 
 [Serializable]

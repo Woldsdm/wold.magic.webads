@@ -24,5 +24,11 @@ namespace MagicWebAds.Core
         {
             driver.SetSettings(settings);
         }
+
+        public void Dispose()
+        {
+            driver.Dispose();
+            driver = null;
+        }
     }
 }

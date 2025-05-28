@@ -13,19 +13,19 @@ namespace MagicWebAds.Core.Data
         /// Whether the ad should automatically be shown after it is fully loaded.
         /// </summary>
         [Tooltip("If enabled, the ad will be shown immediately after it finishes loading.")]
-        public bool showOnLoadComplete = true;
+        public bool showOnLoadComplete = false;
 
         /// <summary>
         /// If true, clicking on links will open them in the system browser instead of inside the WebView.
         /// </summary>
         [Tooltip("If enabled, link clicks will open in the device's default browser instead of the WebView.")]
-        public bool openLinksInSystemBrowser = false;
+        public bool openLinksInSystemBrowser = true;
 
         /// <summary>
         /// Determines whether the WebView background should be transparent.
         /// </summary>
         [Tooltip("Makes the WebView background transparent if supported by the platform.")]
-        public bool isTransparent = false;
+        public bool isTransparent = true;
 
         /// <summary>
         /// Enables JavaScript execution inside the WebView.

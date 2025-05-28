@@ -1,10 +1,9 @@
 using MagicWebAds.Core.Data;
-using System;
 using UnityEngine;
 
 namespace MagicWebAds.Core
 {
-    public interface IWebAdsDriver : IDisposable
+    public interface IWebAdsDriver
     {
         void Load(WebAdRequest request);
         void Show();
@@ -20,5 +19,6 @@ namespace MagicWebAds.Core
         void SetButtonActive(int index, bool active);
         void RemoveButton(int index);
         void ResetAllButtons();
+        void Dispose();
     }
 }

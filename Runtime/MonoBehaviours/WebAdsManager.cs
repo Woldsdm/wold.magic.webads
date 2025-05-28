@@ -8,7 +8,6 @@ namespace MagicWebAds
     public class WebAdsManager : MonoBehaviour
     {
         [SerializeField] List<Service> services;
-        [SerializeField] WebAdsListener listeners;
 
         void Start()
         {
