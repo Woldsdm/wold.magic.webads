@@ -1,4 +1,5 @@
 ﻿using MagicWebAds.Core;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ namespace MagicWebAds
         [SerializeField] bool loadOnEnable = true;
         [SerializeField] bool showOnLoad = true;
         [SerializeField] bool hideWhenDisabled = true;
+
+        [SerializeField]
+        List<AdButtonImage> adButtons = new();
 
         [SerializeField]
         WebAdsListener listener = new();
@@ -126,12 +130,18 @@ namespace MagicWebAds
         public void Launch()
         {
             listener.OnLoaded.AddListener(OnLoaded);
+            listener.OnButtonClicked.AddListener(OnButtonClicked);
             ads = new(listener);
         }
 
         void OnLoaded()
         {
             if (showOnLoad) ads.driver.Show();
+        }
+
+        void OnButtonClicked(int index)
+        {
+            adButtons[index].OnClicked.Invoke();
         }
 
         public void Dispose()

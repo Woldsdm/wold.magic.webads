@@ -17,6 +17,7 @@ public class AdButtonImageEditor : Editor
     public override void OnInspectorGUI()
     {
         EditorGUILayout.PropertyField(spriteProp);
+        EditorGUILayout.Space();
         EditorGUILayout.PropertyField(onClicked);
 
         serializedObject.ApplyModifiedProperties();

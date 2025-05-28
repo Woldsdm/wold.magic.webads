@@ -11,6 +11,7 @@ public class UIAdViewEditor : Editor
     SerializedProperty showOnLoad;
     SerializedProperty hideWhenDisabled;
     SerializedProperty listener;
+    SerializedProperty adButtons;
 
     void OnEnable()
     {
@@ -20,6 +21,7 @@ public class UIAdViewEditor : Editor
         showOnLoad = serializedObject.FindProperty("showOnLoad");
         hideWhenDisabled = serializedObject.FindProperty("hideWhenDisabled");
         listener = serializedObject.FindProperty("listener");
+        adButtons = serializedObject.FindProperty("adButtons");
     }
 
     public override void OnInspectorGUI()
@@ -33,6 +35,7 @@ public class UIAdViewEditor : Editor
         EditorGUILayout.PropertyField(showOnLoad);
         EditorGUILayout.PropertyField(hideWhenDisabled);
         EditorGUILayout.PropertyField(listener);
+        EditorGUILayout.PropertyField(adButtons);
 
         serializedObject.ApplyModifiedProperties();
     }
