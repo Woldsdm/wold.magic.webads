@@ -22,12 +22,6 @@ public static class AdButtonImageMenu
         GameObject go = new GameObject("Ad Button Image", typeof(RectTransform), typeof(AdButtonImage));
         GameObjectUtility.SetParentAndAlign(go, parent);
 
-        RectTransform rt = go.GetComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(100, 100);
-        rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-        rt.pivot = new Vector2(0.5f, 0.5f);
-        rt.anchoredPosition = Vector2.zero;
-
         Selection.activeGameObject = go;
         Undo.RegisterCreatedObjectUndo(go, "Create Ad Button Image");
     }

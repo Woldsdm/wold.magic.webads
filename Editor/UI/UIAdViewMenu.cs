@@ -22,18 +22,9 @@ public static class UIAdViewMenu
         GameObject go = new GameObject("UI Ad View", typeof(RectTransform), typeof(UIAdView));
         GameObjectUtility.SetParentAndAlign(go, parent);
 
-        RectTransform rt = go.GetComponent<RectTransform>();
+        go.GetComponent<RectTransform>();
 
-        rt.sizeDelta = new Vector2(1080, 141);
-
-        rt.anchorMin = rt.anchorMax = new Vector2(0.5f, 0.5f);
-        rt.pivot = new Vector2(0.5f, 0.5f);
-
-        rt.anchoredPosition = Vector2.zero;
-        rt.localScale = Vector3.one;
-
-        UIAdView adView = go.GetComponent<UIAdView>();
-        adView.color = new Color(0.6f, 0.2f, 0.8f, 1f);
+        go.GetComponent<UIAdView>();
 
         Selection.activeGameObject = go;
         Undo.RegisterCreatedObjectUndo(go, "Create UI Ad View");

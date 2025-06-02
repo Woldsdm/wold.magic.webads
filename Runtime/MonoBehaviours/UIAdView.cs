@@ -8,16 +8,34 @@ namespace MagicWebAds
     [AddComponentMenu("Magic WebAds/UI Ad View")]
     public class UIAdView : Image
     {
-        [SerializeField] bool launchOnEnable = true;
-        [SerializeField] bool loadOnEnable = true;
-        [SerializeField] bool showOnLoad = true;
-        [SerializeField] bool hideWhenDisabled = true;
+        [Tooltip("Automatically initializes and launches the ad system on Enable.")]
+        [SerializeField]
+        bool launchOnEnable = true;
 
+        [Tooltip("Automatically loads ads when the component is enabled.")]
+        [SerializeField]
+        bool loadOnEnable = true;
+
+        [Tooltip("Displays the ad immediately after it is loaded.")]
+        [SerializeField]
+        bool showOnLoad = true;
+
+        [Tooltip("Closes the ad when the component is disabled.")]
+        [SerializeField]
+        bool hideWhenDisabled = true;
+
+        [Tooltip("List of keywords to filter and display relevant ads only.")]
+        [SerializeField]
+        List<string> filters = new();
+
+        [Tooltip("List of custom buttons that appear inside the WebView ad content. Each button has an image and a callback.")]
         [SerializeField]
         List<AdButtonImage> adButtons = new();
 
+        [Tooltip("Listener for receiving WebAd events (e.g., OnLoaded, OnClicked). Usually not needed.")]
         [SerializeField]
         WebAdsListener listener = new();
+
         WebAds ads;
 
 

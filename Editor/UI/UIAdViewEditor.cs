@@ -10,6 +10,7 @@ public class UIAdViewEditor : Editor
     SerializedProperty loadOnEnable;
     SerializedProperty showOnLoad;
     SerializedProperty hideWhenDisabled;
+    SerializedProperty filters;
     SerializedProperty listener;
     SerializedProperty adButtons;
 
@@ -20,6 +21,7 @@ public class UIAdViewEditor : Editor
         loadOnEnable = serializedObject.FindProperty("loadOnEnable");
         showOnLoad = serializedObject.FindProperty("showOnLoad");
         hideWhenDisabled = serializedObject.FindProperty("hideWhenDisabled");
+        filters = serializedObject.FindProperty("filters");
         listener = serializedObject.FindProperty("listener");
         adButtons = serializedObject.FindProperty("adButtons");
     }
@@ -34,8 +36,10 @@ public class UIAdViewEditor : Editor
         EditorGUILayout.PropertyField(loadOnEnable);
         EditorGUILayout.PropertyField(showOnLoad);
         EditorGUILayout.PropertyField(hideWhenDisabled);
-        EditorGUILayout.PropertyField(listener);
+        EditorGUILayout.Space();
+        EditorGUILayout.PropertyField(filters);
         EditorGUILayout.PropertyField(adButtons);
+        EditorGUILayout.PropertyField(listener);
 
         serializedObject.ApplyModifiedProperties();
     }
