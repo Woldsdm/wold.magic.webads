@@ -1,5 +1,7 @@
 ﻿using MagicWebAds.Core;
+using MagicWebAds.Core.Data;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,7 +39,7 @@ namespace MagicWebAds
         WebAdsListener listener = new();
 
         WebAds ads;
-
+        List<WebAdRequest> adRequests;
 
         protected override void Reset()
         {
@@ -126,8 +128,6 @@ namespace MagicWebAds
             if (launchOnEnable && ads == null) Launch();
 
             if (loadOnEnable) Load();
-
-            Debug.Log("OnEnable");
         }
 
         protected override void OnDisable()
@@ -136,8 +136,6 @@ namespace MagicWebAds
             if (!Application.isPlaying) return;
 
             if (hideWhenDisabled) ads?.driver?.Close();
-
-            Debug.Log("OnDisable");
         }
 
         public void Load()
@@ -147,9 +145,19 @@ namespace MagicWebAds
 
         public void Launch()
         {
-            listener.OnLoaded.AddListener(OnLoaded);
-            listener.OnButtonClicked.AddListener(OnButtonClicked);
-            ads = new(listener);
+            if (WebAdsManager.Instance)
+            {
+                adRequests = WebAdsManager.Instance.GetAdRequests(filters);
+
+                if (adRequests.Count > 0)
+                {
+                    listener.OnLoaded.AddListener(OnLoaded);
+                    listener.OnButtonClicked.AddListener(OnButtonClicked);
+                    ads = new(listener);
+                }
+                else Debug.LogError("No WebAdRequests found for the given filters. Please check your filters or configure ad requests in WebAdsManager.");
+            }
+            else Debug.LogError("WebAdsManager is missing in the scene. Please add a WebAdsManager component before calling ad requests.");
         }
 
         void OnLoaded()
