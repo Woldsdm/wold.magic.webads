@@ -20,3 +20,8 @@ MonoBehaviour:
     method: 0
     parameters: []
     settings: {fileID: 0}
+  - name: Banner
+    url: https://cdn.bmcdn5.com/html/6662c59ccfe94d20a33e9117.html
+    method: 0
+    parameters: []
+    settings: {fileID: 0}

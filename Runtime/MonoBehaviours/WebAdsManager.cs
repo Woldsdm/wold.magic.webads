@@ -21,13 +21,25 @@ namespace MagicWebAds
 
         public List<WebAdRequest> GetAdRequests(List<string> filters)
         {
-            if (filters.Count == 0)
-            return services.SelectMany(service => service.requests).ToList();
+            List<WebAdRequest> result = new List<WebAdRequest>();
 
-            return services
-                .SelectMany(service => service.requests)
-                .Where(request => filters.Any(filter => request.name.Contains(filter)))
-                .ToList();
+            foreach (var service in services)
+            {
+                foreach (var request in service.requests)
+                {
+                    if (request.settings == null && service.defaultSettings != null)
+                    {
+                        request.settings = service.defaultSettings;
+                    }
+
+                    if (filters.Count == 0 || filters.Any(filter => request.name.Contains(filter)))
+                    {
+                        result.Add(request);
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

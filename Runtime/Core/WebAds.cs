@@ -16,13 +16,15 @@ namespace MagicWebAds.Core
                     driver = new AndroidWebAdsDriver(listener);
                     break;
                 default:
+                    Debug.LogWarning($"The current platform ({Application.platform}) is not yet supported. Please test on an Android device.");
                     break;
             }
+            ApplySettings();
         }
 
         public void ApplySettings()
         {
-            driver.SetSettings(settings);
+            driver?.SetSettings(settings);
         }
 
         public void Dispose()

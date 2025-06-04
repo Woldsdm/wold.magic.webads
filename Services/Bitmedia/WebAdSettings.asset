@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d80801f208c3b4c89c4e1029fbb4a0, type: 3}
   m_Name: WebAdSettings
   m_EditorClassIdentifier: 
-  showOnLoadComplete: 1
+  showOnLoadComplete: 0
   openLinksInSystemBrowser: 1
   isTransparent: 1
   enableJavaScript: 1
