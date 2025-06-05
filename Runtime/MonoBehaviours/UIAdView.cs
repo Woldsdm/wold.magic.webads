@@ -214,7 +214,7 @@ namespace MagicWebAds
 
         public void SetButtonActive(int index, bool active) => ads.driver.SetButtonActive(index, active);
 
-        public void UpdateButton(int index, RectTransform rectTransform, Sprite sprite) => ads.driver.UpdateButton(index, rectTransform, sprite);
+        public void UpdateButton(int index, Sprite sprite) => ads.driver.UpdateButton(index, sprite);
 
         void OnLoaded()
         {

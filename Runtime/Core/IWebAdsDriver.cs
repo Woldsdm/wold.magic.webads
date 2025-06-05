@@ -15,7 +15,7 @@ namespace MagicWebAds.Core
         void UpdateAdLayout();
 
         int AddButton(RectTransform rectTransform, Sprite sprite);
-        void UpdateButton(int index, RectTransform rectTransform, Sprite sprite);
+        void UpdateButton(int index, Sprite sprite);
         void SetButtonActive(int index, bool active);
         void RemoveButton(int index);
         void ResetAllButtons();

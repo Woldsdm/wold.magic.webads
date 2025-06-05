@@ -10,12 +10,6 @@ namespace MagicWebAds.Core.Data
     public class WebAdSettings : ScriptableObject
     {
         /// <summary>
-        /// Whether the ad should automatically be shown after it is fully loaded.
-        /// </summary>
-        [Tooltip("If enabled, the ad will be shown immediately after it finishes loading.")]
-        public bool showOnLoadComplete = false;
-
-        /// <summary>
         /// If true, clicking on links will open them in the system browser instead of inside the WebView.
         /// </summary>
         [Tooltip("If enabled, link clicks will open in the device's default browser instead of the WebView.")]
@@ -50,12 +44,6 @@ namespace MagicWebAds.Core.Data
         /// </summary>
         [Tooltip("Allow both HTTP and HTTPS content to load in the WebView.")]
         public bool allowMixedContent = true;
-
-        /// <summary>
-        /// If enabled, pressing the back button closes the ad instead of navigating back.
-        /// </summary>
-        [Tooltip("Close the ad when the user presses the back button.")]
-        public bool backButtonClosesAd = true;
 
         /// <summary>
         /// If enabled, overrides the WebView's user-agent with a custom string.

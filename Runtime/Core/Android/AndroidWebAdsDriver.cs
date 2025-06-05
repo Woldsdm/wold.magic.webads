@@ -1,4 +1,5 @@
 using MagicWebAds.Core.Data;
+using System;
 using UnityEngine;
 
 namespace MagicWebAds.Core.Android
@@ -46,14 +47,12 @@ namespace MagicWebAds.Core.Android
         public void SetSettings(WebAdSettings settings)
         {
             androidJava?.Call("setSettings",
-                settings.showOnLoadComplete,
                 settings.openLinksInSystemBrowser,
                 settings.isTransparent,
                 settings.enableJavaScript,
                 settings.enableZoom,
                 settings.enableScroll,
                 settings.allowMixedContent,
-                settings.backButtonClosesAd,
                 settings.useCustomUserAgent,
                 settings.customUserAgent,
                 settings.enableCookies,
@@ -81,13 +80,12 @@ namespace MagicWebAds.Core.Android
         public int AddButton(RectTransform rectTransform, Sprite sprite)
         {
             AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
-            return androidJava?.Call<int>("addButton", AndroidHelper.SpriteToBase64(sprite), x, y, width, height) ?? -1;
+            return androidJava?.Call<int>("addButton", AndroidHelper.SpriteToBytes(sprite, 256, 256), x, y, width, height) ?? -1;
         }
 
-        public void UpdateButton(int index, RectTransform rectTransform, Sprite sprite)
+        public void UpdateButton(int index, Sprite sprite)
         {
-            AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
-            androidJava?.Call("updateButton", index, AndroidHelper.SpriteToBase64(sprite), x, y, width, height);
+            androidJava?.Call("updateButton", index, AndroidHelper.SpriteToBytes(sprite, 256, 256));
         }
 
         public void SetButtonActive(int index, bool active)

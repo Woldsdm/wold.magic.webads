@@ -62,7 +62,7 @@ namespace MagicWebAds
 
             id = adView.AddButton(rectTransform, sprite);
 
-            if(activationDelay >= 1f)
+            if (activationDelay >= 1f)
             {
                 adView.SetButtonActive(id, false);
             }
@@ -85,15 +85,16 @@ namespace MagicWebAds
             if (currentStep >= steps.Count || steps.Count == 0)
                 return;
 
-            var step = steps[currentStep];
+            StartCoroutine(HandleStep(steps[currentStep]));
+            currentStep++;
+        }
 
-            if (step.sprite) adView.UpdateButton(id, rectTransform, step.sprite);
+        IEnumerator HandleStep(AdButtonStep step)
+        {
+            yield return null;
 
-            if (step.activationDelay >= 1f)
-            {
-                adView.SetButtonActive(id, false);
-                StartCoroutine(ActivateButtonAfterDelay(step.activationDelay));
-            }
+            if (step.sprite != null)
+                adView.UpdateButton(id, step.sprite);
 
             switch (step.action)
             {
@@ -103,13 +104,16 @@ namespace MagicWebAds
                 case AdButtonAction.LoadNext:
                     adView.Load();
                     break;
-                default:
-                    break;
             }
 
             step.onStepClicked.Invoke();
 
-            currentStep++;
+            if (step.activationDelay >= 1f)
+            {
+                adView.SetButtonActive(id, false);
+                yield return new WaitForSeconds(step.activationDelay);
+                adView.SetButtonActive(id, true);
+            }
         }
 
         IEnumerator ActivateButtonAfterDelay(float delay)
