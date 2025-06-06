@@ -1,5 +1,6 @@
 ﻿using MagicWebAds.Core;
 using MagicWebAds.Core.Data;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -134,6 +135,14 @@ namespace MagicWebAds
         {
             base.OnEnable();
             if (!Application.isPlaying) return;
+
+            StartCoroutine(HandleEnable());
+        }
+
+        IEnumerator HandleEnable()
+        {
+            yield return null;
+
 
             if (launchOnEnable && ads == null) Launch();
 

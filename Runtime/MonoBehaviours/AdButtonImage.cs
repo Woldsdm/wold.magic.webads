@@ -60,11 +60,18 @@ namespace MagicWebAds
         {
             this.adView = adView;
 
+            StartCoroutine(HandleLaunch());
+        }
+
+        IEnumerator HandleLaunch()
+        {
+            yield return null;
+
             id = adView.AddButton(rectTransform, sprite);
 
             if (activationDelay >= 1f)
             {
-                adView.SetButtonActive(id, false);
+                SetButtonActive(false);
             }
         }
 
@@ -76,11 +83,13 @@ namespace MagicWebAds
             }
             else
             {
-                adView.SetButtonActive(id, true);
+                SetButtonActive(true);
             }
         }
 
-        public void NextStep()
+        public void SetButtonActive(bool active) => adView.SetButtonActive(id, active);
+
+        void NextStep()
         {
             if (currentStep >= steps.Count || steps.Count == 0)
                 return;
@@ -98,11 +107,16 @@ namespace MagicWebAds
 
             switch (step.action)
             {
-                case AdButtonAction.Close:
+                case AdButtonAction.LoadNextAd:
+                    adView.Load();
+                    break;
+                case AdButtonAction.CloseAd:
                     adView.Close();
                     break;
-                case AdButtonAction.LoadNext:
-                    adView.Load();
+                case AdButtonAction.DisableButton:
+                    SetButtonActive(false);
+                    break;
+                default:
                     break;
             }
 
@@ -110,24 +124,25 @@ namespace MagicWebAds
 
             if (step.activationDelay >= 1f)
             {
-                adView.SetButtonActive(id, false);
+                SetButtonActive(false);
                 yield return new WaitForSeconds(step.activationDelay);
-                adView.SetButtonActive(id, true);
+                SetButtonActive(true);
             }
         }
 
         IEnumerator ActivateButtonAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
-            adView.SetButtonActive(id, true);
+            SetButtonActive(true);
         }
     }
 
     public enum AdButtonAction
     {
         None,
-        LoadNext,
-        Close
+        LoadNextAd,
+        CloseAd,
+        DisableButton
     }
 
     [Serializable]
