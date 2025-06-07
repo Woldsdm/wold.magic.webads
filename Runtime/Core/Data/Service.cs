@@ -16,4 +16,27 @@ public class Service : ScriptableObject
     /// <summary>List of individual web ad requests under this service.</summary>
     [Tooltip("Multiple requests that belong to this service.")]
     public List<WebAdRequest> requests;
+
+
+    /// <summary>
+    /// Creates a runtime clone of this Service instance.
+    /// Note: This does not duplicate the asset in the Project folder.
+    /// </summary>
+    public Service Clone()
+    {
+        Service clone = CreateInstance<Service>();
+        clone.serviceName = this.serviceName;
+        clone.defaultSettings = this.defaultSettings; // shallow copy
+
+        if (this.requests != null)
+        {
+            clone.requests = new List<WebAdRequest>();
+            foreach (var req in this.requests)
+            {
+                clone.requests.Add(req.Clone());
+            }
+        }
+
+        return clone;
+    }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d324bc8dc89d614582e84a5bc17e6f1, type: 3}
-  m_Name: Bitmedia
+  m_Name: Test
   m_EditorClassIdentifier: 
   serviceName: Bitmedia
   defaultSettings: {fileID: 11400000, guid: aa49e3a7aaaab47428e25df3f3b4663c, type: 2}

@@ -170,7 +170,7 @@ namespace MagicWebAds
                     ads.settings = adSettings;
                     ads.ApplySettings();
                 }
-                ads.driver.SetAdLayout(rectTransform);
+                ads.driver?.SetAdLayout(rectTransform);
                 ads.driver?.Load(adRequest);
             }
             else
@@ -215,17 +215,18 @@ namespace MagicWebAds
                             adButton.Launch(this);
                         }
                     }
+                    WebAdsManager.Instance.AddAdViews(this);
                 }
                 else Debug.LogError("No WebAdRequests found for the given filters. Please check your filters or configure ad requests in WebAdsManager.");
             }
             else Debug.LogError("WebAdsManager is missing in the scene. Please add a WebAdsManager component before calling ad requests.");
         }
 
-        public int AddButton(RectTransform rectTransform, Sprite sprite) => ads.driver.AddButton(rectTransform, sprite);
+        public int AddButton(RectTransform rectTransform, Sprite sprite) => ads.driver?.AddButton(rectTransform, sprite) ?? -1;
 
-        public void SetButtonActive(int index, bool active) => ads.driver.SetButtonActive(index, active);
+        public void SetButtonActive(int index, bool active) => ads.driver?.SetButtonActive(index, active);
 
-        public void UpdateButton(int index, Sprite sprite) => ads.driver.UpdateButton(index, sprite);
+        public void UpdateButton(int index, Sprite sprite) => ads.driver?.UpdateButton(index, sprite);
 
         void OnLoaded()
         {

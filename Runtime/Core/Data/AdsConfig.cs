@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -84,6 +85,21 @@ namespace MagicWebAds.Core.Data
                 return url.Contains("?") ? url + "&" + paramData : url + "?" + paramData;
             }
             return url;
+        }
+
+        /// <summary>
+        /// Creates a deep copy of the WebAdRequest, except for 'settings' which is shallow copied.
+        /// </summary>
+        public WebAdRequest Clone()
+        {
+            return new WebAdRequest
+            {
+                name = this.name,
+                url = this.url,
+                method = this.method,
+                parameters = this.parameters?.Select(p => new Parameter { name = p.name, value = p.value }).ToList(),
+                settings = this.settings
+            };
         }
     }
 

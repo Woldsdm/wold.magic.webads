@@ -9,21 +9,39 @@ namespace MagicWebAds
     public class WebAdsManager : MonoBehaviour
     {
         public static WebAdsManager Instance;
+
         [SerializeField] List<Service> services;
+
+        List<Service> runtimeServices;
+
+        List<UIAdView> adViews = new();
 
         void Awake()
         {
             if (Instance == null)
-            {
                 Instance = this;
+
+
+            runtimeServices = new List<Service>();
+            foreach (var service in services)
+            {
+                if (service != null)
+                {
+                    runtimeServices.Add(service.Clone());
+                }
             }
+        }
+
+        public void AddAdViews(UIAdView adView)
+        {
+            adViews.Add(adView);
         }
 
         public List<WebAdRequest> GetAdRequests(List<string> filters)
         {
             List<WebAdRequest> result = new List<WebAdRequest>();
 
-            foreach (var service in services)
+            foreach (var service in runtimeServices)
             {
                 foreach (var request in service.requests)
                 {
@@ -40,6 +58,18 @@ namespace MagicWebAds
             }
 
             return result;
+        }
+
+        void OnDisable()
+        {
+            if (adViews.Count > 0)
+            {
+                foreach (var adView in adViews)
+                {
+                    adView.Dispose();
+                }
+                adViews = new();
+            }
         }
     }
 }
