@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace MagicWebAds.Core.Data
@@ -75,7 +74,22 @@ namespace MagicWebAds.Core.Data
         [Tooltip("Clear all cached data in the WebView before loading.")]
         public bool clearCacheOnStart = true;
 
-        /// <summary>Serialize this WebAdSettings to JSON.</summary>
-        public string Serialize() => JsonConvert.SerializeObject(this);
+        /// <summary>
+        /// If enabled, the ad content will be scaled to fit exactly within the WebView without zooming.
+        /// </summary>
+        [Tooltip("If enabled, the ad content will scale to fit within the WebView without zoom.")]
+        public bool fitContentToView = true;
+
+        /// <summary>
+        /// If enabled, user zooming (pinch zoom) is disabled to prevent zooming in/out.
+        /// </summary>
+        [Tooltip("Disable user zooming gestures like pinch zoom.")]
+        public bool disableUserZoom = true;
+
+        /// <summary>
+        /// If enabled, maintains the aspect ratio of the ad content when fitting it to the WebView.
+        /// </summary>
+        [Tooltip("Maintain the aspect ratio of ad content when fitting to the WebView.")]
+        public bool maintainAspectRatio = true;
     }
 }

@@ -5,6 +5,7 @@ namespace MagicWebAds.Core
 {
     public interface IWebAdsDriver
     {
+        void InjectHtml(string html);
         void Load(WebAdRequest request);
         void Show();
         void Close();

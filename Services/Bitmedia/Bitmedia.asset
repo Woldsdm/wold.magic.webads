@@ -15,12 +15,12 @@ MonoBehaviour:
   serviceName: Bitmedia
   defaultSettings: {fileID: 11400000, guid: aa49e3a7aaaab47428e25df3f3b4663c, type: 2}
   requests:
-  - name: Banner
+  - name: Banner1
     url: https://cdn.bmcdn5.com/html/6662c59ccfe94d20a33e9117.html
     method: 0
     parameters: []
     settings: {fileID: 0}
-  - name: Banner
+  - name: Banner2
     url: https://lordkayaba.github.io/sd/index.html
     method: 0
     parameters: []

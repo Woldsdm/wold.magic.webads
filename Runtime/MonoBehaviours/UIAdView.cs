@@ -131,6 +131,8 @@ namespace MagicWebAds
             if (!launchOnEnable && loadOnEnable) launchOnEnable = true;
         }
 #endif
+
+
         protected override void OnEnable()
         {
             base.OnEnable();

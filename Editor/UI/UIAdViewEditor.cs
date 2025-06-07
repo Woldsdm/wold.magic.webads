@@ -5,14 +5,9 @@ using UnityEditor;
 [CanEditMultipleObjects]
 public class UIAdViewEditor : Editor
 {
-    SerializedProperty color;
-    SerializedProperty launchOnEnable;
-    SerializedProperty loadOnEnable;
-    SerializedProperty showOnLoad;
-    SerializedProperty hideWhenDisabled;
-    SerializedProperty filters;
-    SerializedProperty listener;
-    SerializedProperty adButtons;
+    SerializedProperty color,
+    launchOnEnable, loadOnEnable, showOnLoad,
+    hideWhenDisabled, filters, listener, adButtons;
 
     void OnEnable()
     {

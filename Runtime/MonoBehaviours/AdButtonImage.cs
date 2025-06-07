@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -102,8 +103,9 @@ namespace MagicWebAds
         {
             yield return null;
 
-            if (step.sprite != null)
-                adView.UpdateButton(id, step.sprite);
+            if (step.activationDelay >= 1f) SetButtonActive(false);
+
+            if (step.sprite != null) adView.UpdateButton(id, step.sprite);
 
             switch (step.action)
             {
@@ -124,7 +126,6 @@ namespace MagicWebAds
 
             if (step.activationDelay >= 1f)
             {
-                SetButtonActive(false);
                 yield return new WaitForSeconds(step.activationDelay);
                 SetButtonActive(true);
             }

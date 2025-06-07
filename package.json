@@ -9,8 +9,5 @@
     "name": "Wold",
     "email": "woldsdg@gmail.com",
     "url": "https://github.com/Woldsdm/wold.magic.webads"
-  },
-  "dependencies": {
-    "com.unity.nuget.newtonsoft-json": "3.2.1"
   }
 }

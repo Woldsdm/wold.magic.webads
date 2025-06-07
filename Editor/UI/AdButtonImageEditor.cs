@@ -1,14 +1,12 @@
 ﻿using MagicWebAds;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(AdButtonImage))]
 [CanEditMultipleObjects]
 public class AdButtonImageEditor : Editor
 {
-    SerializedProperty spriteProp;
-    SerializedProperty activationDelay;
-    SerializedProperty onClicked;
-    SerializedProperty steps;
+    SerializedProperty spriteProp, activationDelay, onClicked, steps;
 
     void OnEnable()
     {

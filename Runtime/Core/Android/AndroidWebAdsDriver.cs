@@ -28,6 +28,11 @@ namespace MagicWebAds.Core.Android
             }
         }
 
+        public void InjectHtml(string html)
+        {
+            androidJava?.Call("injectHtml", html);
+        }
+
         public void Load(WebAdRequest request)
         {
             androidJava?.Call("load", request.GetURL(),
@@ -57,19 +62,22 @@ namespace MagicWebAds.Core.Android
                 settings.customUserAgent,
                 settings.enableCookies,
                 settings.cacheEnabled,
-                settings.clearCacheOnStart
+                settings.clearCacheOnStart,
+                settings.fitContentToView,
+                settings.disableUserZoom,
+                settings.maintainAspectRatio
             );
         }
 
         public void SetAdLayout(RectTransform rectTransform)
         {
             AndroidHelper.ConvertRectTransform(rectTransform, out int x, out int y, out int width, out int height);
-            layout.Call("setLayout", x, y, width, height);
+            layout?.Call("setLayout", x, y, width, height);
         }
 
         public void SetAdLayoutFullScreen()
         {
-            layout.Call("setFullScreen");
+            layout?.Call("setFullScreen");
         }
 
         public void UpdateAdLayout()
