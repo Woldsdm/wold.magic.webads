@@ -10,17 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d324bc8dc89d614582e84a5bc17e6f1, type: 3}
-  m_Name: Test
+  m_Name: AADS
   m_EditorClassIdentifier: 
-  serviceName: Bitmedia
+  serviceName: AADS
   defaultSettings: {fileID: 11400000, guid: aa49e3a7aaaab47428e25df3f3b4663c, type: 2}
   requests:
-  - name: Banner1
-    url: https://cdn.bmcdn5.com/html/6662c59ccfe94d20a33e9117.html
+  - name: Banner125
+    url: https://lordkayaba.github.io/sd/index.html
     method: 0
     parameters: []
     settings: {fileID: 0}
-  - name: Banner2
+  - name: Banner125
+    url: https://lordkayaba.github.io/sd/index.html
+    method: 0
+    parameters: []
+    settings: {fileID: 0}
+  - name: Banner125
     url: https://lordkayaba.github.io/sd/index.html
     method: 0
     parameters: []

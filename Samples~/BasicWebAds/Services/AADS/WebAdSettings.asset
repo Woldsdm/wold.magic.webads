@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d80801f208c3b4c89c4e1029fbb4a0, type: 3}
   m_Name: WebAdSettings
   m_EditorClassIdentifier: 
-  showOnLoadComplete: 0
   openLinksInSystemBrowser: 1
   isTransparent: 1
   enableJavaScript: 1
   enableZoom: 0
   enableScroll: 0
   allowMixedContent: 1
-  backButtonClosesAd: 1
   useCustomUserAgent: 0
   customUserAgent: 
   enableCookies: 1
   cacheEnabled: 0
   clearCacheOnStart: 1
+  fitContentToView: 1
+  disableUserZoom: 1
+  maintainAspectRatio: 1

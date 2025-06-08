@@ -71,7 +71,7 @@ namespace MagicWebAds
             }
 
             Rect rect = GetPixelAdjustedRect();
-            float thickness = 8;
+            float thickness = 4;
 
             Vector2 bl = new(rect.xMin, rect.yMin);
             Vector2 tl = new(rect.xMin, rect.yMax);
