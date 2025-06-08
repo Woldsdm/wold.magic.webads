@@ -35,6 +35,17 @@ https://github.com/Woldsdm/wold.magic.webads.git
 
 ---
 
+## 📱 Android Demo Build (Early Preview)
+
+Want to see it in action?  
+Try our demo APK on any Android 5.1+ device:
+
+👉 [Download MagicWebAds Demo (.apk)](https://raw.githubusercontent.com/Woldsdm/wold.magic.webads-build-demo/refs/heads/main/Android/MagicWebAds.apk)
+
+> ⚠️ Please wait a few moments after launching the app to let the ads load. Load time depends on your internet connection speed.
+
+---
+
 ## 🛠️ Requirements
 
 * Unity **2021.3+**
