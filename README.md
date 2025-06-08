@@ -48,6 +48,6 @@ Coming soon...
 
 ---
 
-Made with ❤️ by [Wold Studio](https://github.com/Woldsdm)
+Made with ❤️ by [Team Wold](https://github.com/Woldsdm)
 
 ---
