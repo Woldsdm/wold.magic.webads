@@ -28,7 +28,7 @@ Magic WebAds is a Unity package built specifically for loading and displaying We
 4. Paste the following:
 
 ```
-https://github.com/Woldsdm/wold.magic.webads.git#v1.0.0
+https://github.com/Woldsdm/wold.magic.webads.git#v1.0.1
 ```
 
 5. Click **Add**. Unity will automatically import the package.
