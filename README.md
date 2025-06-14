@@ -55,7 +55,7 @@ Try our demo APK on any Android 5.1+ device:
 
 ## 📖 Documentation & Tutorials
 
-Coming soon...
+👉 [Magic WebAds Documentation](https://github.com/Woldsdm/docs-magic-webads/blob/main/README.md)
 
 ---
 

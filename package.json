@@ -1,15 +1,24 @@
 {
   "name": "wold.magic.webads",
   "displayName": "Magic WebAds",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2021.3",
 "description": "Magic WebAds is a lightweight and modular Unity package for displaying Web3-compatible ads using a built-in WebView system. It supports any HTML-based ad service and gives full control over layout, behavior, and user interaction without requiring external SDKs.",
-  "licensesUrl": "https://github.com/Woldsdm/wold.magic.webads/blob/main/LICENSE.md",
   "author": {
     "name": "Wold",
     "email": "woldsdg@gmail.com",
     "url": "https://github.com/Woldsdm/wold.magic.webads"
   },
+  "documentationUrl": "https://github.com/Woldsdm/docs-magic-webads/blob/v1.0.1/README.md",
+  "keywords": [
+    "ads",
+    "web3",
+    "crypto",
+    "advertising",
+    "monetization",
+    "webads",
+    "webview"
+  ],
   "samples": [
   {
     "displayName": "Basic WebAds Example",

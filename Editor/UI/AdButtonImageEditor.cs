@@ -1,6 +1,5 @@
 ﻿using MagicWebAds;
 using UnityEditor;
-using UnityEngine;
 
 [CustomEditor(typeof(AdButtonImage))]
 [CanEditMultipleObjects]
