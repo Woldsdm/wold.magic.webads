@@ -1,4 +1,5 @@
 using MagicWebAds.Core.Data;
+using MagicWebAds.Debugging;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,6 +13,10 @@ namespace MagicWebAds
 
         [SerializeField] List<Service> services;
 
+        [SerializeField] bool debugMode;
+
+        DebugManager debugManager;
+
         List<Service> runtimeServices;
 
         List<UIAdView> adViews = new();
@@ -21,6 +26,7 @@ namespace MagicWebAds
             if (Instance == null)
                 Instance = this;
 
+            LaunchDebug();
 
             runtimeServices = new List<Service>();
             foreach (var service in services)
@@ -35,6 +41,13 @@ namespace MagicWebAds
         public void AddAdViews(UIAdView adView)
         {
             adViews.Add(adView);
+            debugManager?.AddEventLog(adView);
+        }
+
+        void LaunchDebug()
+        {
+            if (!debugMode) return;
+            debugManager = new();
         }
 
         public List<WebAdRequest> GetAdRequests(List<string> filters)
@@ -62,6 +75,7 @@ namespace MagicWebAds
 
         void OnDisable()
         {
+            debugManager?.Dispose();
             if (adViews.Count > 0)
             {
                 foreach (var adView in adViews)

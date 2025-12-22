@@ -37,6 +37,7 @@ namespace MagicWebAds
         [Tooltip("Listener for receiving WebAd events (e.g., OnLoaded, OnClicked). Usually not needed.")]
         [SerializeField]
         WebAdsListener listener = new();
+        public WebAdsListener Listener => listener;
 
         WebAds ads;
         WebAdSettings adSettings;
