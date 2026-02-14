@@ -9,7 +9,7 @@ namespace MagicWebAds
     [AddComponentMenu("Magic WebAds/WebAds Manager")]
     public class WebAdsManager : MonoBehaviour
     {
-        public static WebAdsManager Instance;
+        public static WebAdsManager Instance {get; private set;}
 
         [SerializeField] List<Service> services;
 
