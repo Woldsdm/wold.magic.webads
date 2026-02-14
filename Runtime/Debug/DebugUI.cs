@@ -135,6 +135,7 @@ public class DebugUI : MonoBehaviour
     {
         foreach (var txt in active)
         {
+            txt.gameObject.SetActive(false);
             pool.Enqueue(txt);
         }
 
